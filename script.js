@@ -27,7 +27,7 @@ function generatePassword() {
   // let's declare  a function that can loop if the passLength is out of bounds, before continuing to the next prompt
 
   var passLength; // first declares the passLength variable, so we can refer to it inside the loop
-  
+
   function passLengthValidation() {
     passLength = parseInt(prompt("How long do you want the password to be? "));
       if ((passLength < 8) || (passLength > 128)) {
@@ -50,26 +50,33 @@ function generatePassword() {
     // For each password character, choose to use case 0, 1, 2, or 3, which represents lowercase, uppercase, number, or special character
     var charType = Math.floor(Math.random() * 4); 
     
-    // the switch is automatically choosing a case during each iteration of the loop
+    // the switch is automatically choosing a case during each iteration of the loop, if that case is selected by user
     switch (charType) {
 
       case 0:
-        password += lettersLower.charAt(Math.floor(Math.random() * lettersLower.length)); // selects a random lowercase letter
-        break; // stops the current 'switch' choice and continues the 'for' loop
+        if (haveLettersLower) {
+          password += lettersLower.charAt(Math.floor(Math.random() * lettersLower.length)); // selects a random lowercase letter
+          break; // stops the current 'switch' choice and continues the 'for' loop
+        }
 
       case 1:
-        password += lettersUpper.charAt(Math.floor(Math.random() * lettersUpper.length)); // selects a random uppercase letter
-        break;
+        if (haveLettersUpper) {
+          password += lettersUpper.charAt(Math.floor(Math.random() * lettersUpper.length)); // selects a random uppercase letter
+          break;
+        }
 
       case 2:
-        password += Math.floor(Math.random() * 10); // selects a random number 0-9
-        break;
+        if (haveRandomNums) {
+          password += Math.floor(Math.random() * 10); // selects a random number 0-9
+          break;
+        }
 
       case 3:
-        password += specialChars.charAt(Math.floor(Math.random() * specialChars.length)); // selects a random special character
-        break;
+        if (haveSpecialChars) {
+          password += specialChars.charAt(Math.floor(Math.random() * specialChars.length)); // selects a random special character
+          break;
+        }
     }
   }
-  console.log(password);
   return password;
 }
