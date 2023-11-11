@@ -44,6 +44,10 @@ function generatePassword() {
   var haveRandomNums = confirm("Do you want numbers?")
   var haveSpecialChars = confirm("Do you want to include special characters?")
 
+  if (!haveLettersLower && !haveLettersUpper && !haveRandomNums && !haveSpecialChars) {
+    alert("You need to select at least one character type")
+  }
+
   // can either use a for or while loop, but in this case 'for' works
   for (var i = 0; i < passLength; i++) {
 
