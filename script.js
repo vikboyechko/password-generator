@@ -30,8 +30,8 @@ function generatePassword() {
 
   function passLengthValidation() {
     passLength = parseInt(prompt("How long do you want the password to be? "));
-      if ((passLength < 8) || (passLength > 128)) {
-        alert("Password must be between 8 and 128 characters");
+      if (isNaN(passLength) || passLength < 8 || passLength > 128) {
+        alert("Password length must be a number between 8 and 128.");
         passLengthValidation(); // runs the function again, although maybe there is an alternative like 'continue' or 'return'
     return passLength; // saves the passLength variable to use globally
       }
